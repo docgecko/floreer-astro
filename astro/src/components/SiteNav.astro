@@ -1,0 +1,60 @@
+---
+import SearchButton from './SearchButton';
+import SideNavButton from './SideNavButton';
+
+const siteNavigation = [
+  {
+    order: 1,
+    title: 'Work',
+    url: '/work',
+  },
+  {
+    order: 2,
+    title: 'Thinking',
+    url: '/thinking',
+  },
+  {
+    order: 3,
+    title: 'About',
+    url: '/about',
+  },
+  {
+    order: 4,
+    title: 'Connect',
+    url: '/connect',
+  },
+];
+---
+
+<nav
+  class='relative h-24 flex justify-between items-center pl-9 pr-6 bg-transparent text-md font-medium z-30'
+>
+  <a href='' class='p-3 bg-white rounded-full'>
+    <img
+      src='/images/floreer_icon.png'
+      alt='Welcome to Floreer'
+      class='flex flex-row w-40 flex-shrink-0'
+    />
+  </a>
+  <ul class='flex flex-row p-0 m-0 list-none'>
+    <!-- Site Navigation -->
+    {
+      siteNavigation.map((item) => (
+        <li class='p-0 m-0 list-none'>
+          <a
+            class='flex justify-center items-center transition duration-200 ease-in-out rounded-full h-12 px-4 mx-3 text-white bg-indigo-800 hover:text-indigo-800 hover:bg-white cursor-pointer'
+            href={item.url}
+            title={item.title}
+            target='_self'
+          >
+            {item.title}
+          </a>
+        </li>
+      ))
+    }
+    <!-- Search Button -->
+    <SearchButton client:visible />
+    <!-- SideNav Menu Button -->
+    <SideNavButton client:visible />
+  </ul>
+</nav>

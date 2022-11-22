@@ -1,0 +1,226 @@
+---
+import Layout from '@layouts/Layout.astro';
+// import { getPage } from '@lib/sanityAPI';
+import sanityClient from '@lib/sanityClient';
+import SanityPortableText from '@components/SanityPortableText.astro';
+
+// export async function getStaticProps(title: string) {
+//   return await getPage(title);
+// }
+// const data = await getStaticProps('Home');
+// console.log({ data });
+
+const pageTitle = 'Home';
+const query = `*[_type == "page" && page_title == "${pageTitle}"][0]{
+    ...,
+    'hero_title': hero->hero_title,
+    'hero_description': hero->hero_description,
+    'hero_image': hero->hero_image->image.asset->url,
+    'hero_image_owner_name': hero->hero_image->owner_name,
+    'hero_image_owner_url': hero->hero_image->owner_url,
+    'hero_image_source_name': hero->hero_image->source_name,
+    'hero_image_source_url': hero->hero_image->source_url,
+  }`;
+console.log({ query });
+const data = await sanityClient.fetch(query);
+---
+
+<Layout>
+  <!-- Header Image -->
+  <section id='section-hero-image' class='w-full h-screen'>
+    <!-- Hero Image -->
+    <div
+      class='flex overflow-hidden absolute w-full h-screen'
+      style='max-width: none; transform: scale(1)'
+    >
+      <img src={data.hero_image} class='object-cover z-0 h-full w-full' />
+    </div>
+
+    <!-- Hero Image Title -->
+    <div
+      class='flex overflow-hidden absolute w-full h-screen z-10'
+      style='height: 100vh'
+    >
+      <div
+        class='flex flex-col relative items-start justify-center min-w-0 ml-28 w-2/5 left-0'
+      >
+        <h1
+          class='text-white bg-indigo-800 font-medium sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl px-8 py-4 rounded-3xl'
+        >
+          <SanityPortableText portableText={data.hero_title} />
+        </h1>
+        <h2
+          class='text-indigo-800 font-medium sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl pt-4 px-8'
+        >
+          <SanityPortableText portableText={data.hero_description} />
+        </h2>
+      </div>
+    </div>
+
+    <!-- Hero Image Attribution -->
+    <div
+      class='flex overflow-hidden absolute w-full h-screen z-20'
+      style='max-width: none; transform: scale(1)'
+    >
+      <div
+        class='flex flex-col relative items-end justify-end min-w-0 mr-8 mb-4 w-full right-0'
+      >
+        <span class='text-xs text-white'
+          >Photo by
+          <a
+            class='cursor-pointer hover:underline'
+            href={data.hero_image_owner_url}
+          >
+            {data.hero_image_owner_name}
+          </a>
+          on
+          <a
+            class='cursor-pointer hover:underline'
+            href={data.hero_image_source_url}
+          >
+            {data.hero_image_source_name}
+          </a>
+        </span>
+      </div>
+    </div>
+
+    <!-- Scroll Down Button -->
+    <div class='flex flex-col absolute w-1/2 h-screen z-30 text-center'>
+      <span
+        class='absolute left-full bottom-16 w-40 h-10 -ml-20 text-indigo-800'
+      >
+        scroll down
+      </span>
+      <!-- <button
+        class='scroll absolute left-full bottom-8 w-11 h-11 bg-white rounded-full outline-none -ml-6'
+        onclick='scrollToSection('
+        #section-services')'
+      >
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          fill='none'
+          viewBox='-4 -4 32 32'
+          stroke='currentColor'
+          class='cursor-pointer text-indigo-800'
+        >
+          <path
+            class='ml-2'
+            stroke-linecap='round'
+            stroke-linejoin='round'
+            stroke-width='1'
+            d='M19 13l-7 7-7-7m14-8l-7 7-7-7'></path>
+        </svg>
+      </button> -->
+    </div>
+  </section>
+
+  <!-- Our Services -->
+  <!-- <section id='section-services' class='flex flex-col relative py-12 px-9'>
+    <header class='flex max-w-7xl mx-auto h-auto'>
+      <h2 class='flex justify-center text-gray-500 mb-7 text-2xl'>
+        {fields.titleServices.content[0].content[0].value}
+      </h2>
+    </header>
+    <article class='flex flex-col max-w-7xl mx-auto h-auto'>
+      <p class='flex justify-center text-black pb-8 text-lg items-center'>
+        {fields.descriptionServices.content[0].content[0].value}
+      </p>
+      <div class='flex justify-center text-gray-500 mb-7 text-xl items-center'>
+        <app-services-all columns='4' />
+      </div>
+    </article>
+  </section> -->
+
+  <!-- Our Work -->
+  <!-- <section id='section-work' class='flex flex-col relative py-12 px-9'>
+    <header class='flex max-w-7xl mx-auto h-auto'>
+      <h2 class='flex justify-center text-gray-500 mb-7 text-2xl'>
+        {fields.titleWork.content[0].content[0].value}
+      </h2>
+    </header>
+    <article class='flex flex-col max-w-7xl mx-auto h-auto'>
+      <p class='flex justify-center text-black pb-8 text-lg items-center'>
+        {fields.descriptionWork.content[0].content[0].value}
+      </p>
+      <app-case-studies-featured />
+      <p class='flex w-full justify-end pt-4 text-gray-500 mb-7 text-2xl'>
+        <a
+          href='/work/case-studies'
+          class='inline-flex items-center px-0 py-2 font-normal leading-5 text-gray-500 text-lg border-b pb-1 border-transparent hover:border-b hover:border-gray-500 transition duration-300 ease-in-out'
+        >
+          All case studies
+          <svg
+            class='inline-block w-5 h-5 ml-1 cursor-pointer text-gray-300'
+            fill='1'
+            viewBox='4 4 12 12'
+            stroke='white'
+          >
+            <path
+              style='fill: rgba(55, 48, 163, 1)'
+              class='ml-2'
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              stroke-width='1'
+              d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z'
+            ></path>
+          </svg>
+        </a>
+      </p>
+    </article>
+  </section> -->
+
+  <!-- Our Clients -->
+  <!-- <section
+    id='section-clients'
+    class='flex flex-col relative bg-gray-200 py-12 px-9'
+  >
+    <header class='flex max-w-7xl mx-auto h-auto'>
+      <h2 class='flex w-full justify-center text-gray-500 mb-7 text-2xl'>
+        {fields.titleClients.content[0].content[0].value}
+      </h2>
+    </header>
+    <article class='flex flex-col max-w-7xl mx-auto h-auto'>
+      <p class='flex justify-center text-black pb-8 text-lg items-center'>
+        {fields.descriptionClients.content[0].content[0].value}
+      </p>
+    </article>
+    <div class='max-w-7xl w-full mx-auto h-auto'>
+      <app-carousel class='flex flex-col w-full' />
+    </div>
+  </section> -->
+
+  <!-- Our Thinking -->
+  <!-- <section
+    id="sectionThinking"
+    class="flex flex-col relative w-full h-auto pt-12 pr-9 pb-9 pl-9"
+  >
+    <h2 class="flex w-full justify-center text-gray-500 mb-8 text-xl">
+      {{ page.titleThinking }}
+    </h2>
+    <p class="flex w-full justify-center text-black text-lg items-center pb-8">
+      {{ page.descriptionThinking }}
+    </p>
+    <div
+      class="flex w-full justify-center text-gray-500 mb-7 text-xl items-center"
+    >
+
+    </div>
+  </section> -->
+
+  <!-- About Us -->
+  <!-- <section id='section-about' class='flex flex-col relative py-12 px-9'>
+    <header class='flex max-w-7xl mx-auto h-auto'>
+      <h2 class='flex w-full justify-center mb-7 text-2xl'>
+        {fields.titleAbout.content[0].content[0].value}
+      </h2>
+    </header>
+    <article class='flex flex-col max-w-7xl mx-auto h-auto'>
+      <p class='flex justify-center text-black pb-8 text-lg items-center'>
+        {fields.descriptionAbout.content[0].content[0].value}
+      </p>
+      <div class='flex flex-col w-full h-auto'>
+        <app-about-all />
+      </div>
+    </article>
+  </section> -->
+</Layout>

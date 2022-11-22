@@ -1,0 +1,43 @@
+---
+const footerLinks = [
+  {
+    title: 'About',
+    url: '/about',
+  },
+  {
+    title: 'Connect',
+    url: '/connect',
+  },
+  {
+    title: 'Cookie policy',
+    url: '/about/cookie-policy',
+  },
+  {
+    title: 'Privacy policy',
+    url: '/about/privacy-policy',
+  },
+  {
+    title: 'Terms of use',
+    url: '/about/terms-of-use',
+  },
+  {
+    title: 'Sitemap',
+    url: '/sitemap',
+  },
+];
+---
+
+<ul class='flex flex-row'>
+  {
+    footerLinks.map((footerLink) => (
+      <li class='relative mr-10'>
+        <a
+          href={footerLink.url}
+          class='pb-1 border-b border-transparent hover:border-white transition duration-300 ease-in-out'
+        >
+          {footerLink.title}
+        </a>
+      </li>
+    ))
+  }
+</ul>

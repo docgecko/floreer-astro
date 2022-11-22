@@ -1,0 +1,25 @@
+{
+  "name": "floreer-astro",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && tsc --noEmit && astro build"
+  },
+  "devDependencies": {
+    "@astrojs/sitemap": "^1.0.0",
+    "@astrojs/tailwind": "^1.0.0",
+    "@types/mailchimp__mailchimp_marketing": "^3.0.6",
+    "astro": "^1.6.10",
+    "astro-sanity": "^1.0.0",
+    "dotenv": "^10.0.0"
+  },
+  "dependencies": {
+    "@astro-reactive/form": "^0.6.3",
+    "@astro-reactive/validator": "^0.2.3",
+    "@astrojs/solid-js": "^1.2.3",
+    "@mailchimp/mailchimp_marketing": "^3.0.80",
+    "solid-js": "^1.6.2"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "importsNotUsedAsValues": "error",
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@layouts/*": [
+        "./src/layouts/*"
+      ],
+      "@lib/*": [
+        "./src/lib/*"
+      ],
+      "@pages/*": [
+        "./src/pages/*"
+      ],
+      "@store/*": [
+        "./src/store/*"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
+      ]
+    }
+  }
+}
