@@ -1,0 +1,50 @@
+---
+import { getServices } from '@lib/sanityApi';
+
+const data = await getServices();
+const { columns } = Astro.props;
+const colWidth = 'width: calc(' + 100 / columns + '% - 2rem)';
+---
+
+<div class='flex flex-row pt-0 pb-0 w-full'>
+  <div class='flex flex-wrap -m-4'>
+    {
+      data &&
+        data.map((service: any) => (
+          <div
+            class='flex m-4 bg-white hover:bg-gray-200 hover:text-indigo-800 cursor-pointer transition duration-200 ease-in-out'
+            style={colWidth}
+          >
+            <a href={`/work/services/${service.slug}`}>
+              <div class='flex flex-col'>
+                {/* Hero Image */}
+                <div
+                  class='flex overflow-hidden h-full w-full'
+                  style='max-width: none; transform: scale(1)'
+                >
+                  <img
+                    class='object-cover z-0 w-[272px] h-[153px]'
+                    src={service.hero_image_url}
+                  />
+                </div>
+
+                {/* Hero Details */}
+                <div class='flex flex-col m-4'>
+                  <h2 class='flex mb-1 text-2xl text-indigo-800'>
+                    {service.title}
+                  </h2>
+                  <ul class='list-inside'>
+                    {service.subservices.map((subservice: any) => (
+                      <li class='text-base text-gray-500 font-light'>
+                        {subservice.title}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </a>
+          </div>
+        ))
+    }
+  </div>
+</div>

@@ -1,0 +1,46 @@
+---
+import FooterForm from './FooterForm';
+import FooterNav from './FooterNav.astro';
+import FooterSocialLinks from './FooterSocialLinks';
+
+const currentYear: number = new Date().getFullYear();
+---
+
+<footer class='flex flex-col relative pt-12 pb-9 px-9 bg-gray-800 text-white'>
+  <div class='flex flex-col max-w-7xl mx-auto h-auto'>
+    <div class='flex flex-row'>
+      <div class='flex w-1/2 justify-start text-xl font-light pr-5'>
+        Stay informed. Subscribe to Floreer Thinking, our periodic review of
+        critical industry and service related issues
+      </div>
+      <div class='flex flex-row w-1/2 pl-5'>
+        <FooterForm client:load />
+      </div>
+    </div>
+
+    <div class='flex flex-row pt-12 pb-24'>
+      <div class='flex w-1/2 justify-start text-xl font-light'>
+        <img
+          src='/images/floreer_logo_white.png'
+          class='h-7'
+          alt='Floreer white logo'
+        />
+      </div>
+      <div class='flex w-1/2 justify-end'>
+        <FooterSocialLinks client:visible />
+      </div>
+    </div>
+
+    <div class='flex flex-row pt-16 pb-2'>
+      <div class='flex w-full justify-start text-base font-light pb-6'>
+        <FooterNav />
+      </div>
+    </div>
+
+    <div class='flex flex-row'>
+      <div class='flex w-full justify-start text-sm text-gray-400 font-light'>
+        &copy; 2013-{currentYear} Floreer, Lda. All rights reserved.
+      </div>
+    </div>
+  </div>
+</footer>

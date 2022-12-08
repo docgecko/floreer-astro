@@ -18,8 +18,16 @@
   "dependencies": {
     "@astro-reactive/form": "^0.6.3",
     "@astro-reactive/validator": "^0.2.3",
-    "@astrojs/solid-js": "^1.2.3",
+    "@astrojs/react": "^1.2.2",
+    "@hookform/resolvers": "^2.9.10",
     "@mailchimp/mailchimp_marketing": "^3.0.80",
-    "solid-js": "^1.6.2"
+    "@nanostores/react": "^0.4.0",
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.9",
+    "nanostores": "^0.7.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.40.0",
+    "yup": "^0.32.11"
   }
 }

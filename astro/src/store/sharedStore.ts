@@ -1,3 +1,7 @@
-import { createSignal } from 'solid-js';
+import { atom } from 'nanostores';
 
-export const [searchBar, setSearchBar] = createSignal(false);
+// Search Bar
+export const isSearchBarOpen = atom<boolean>(false);
+
+// Side Nav
+export const isSideNavOpen = atom<boolean>(false);

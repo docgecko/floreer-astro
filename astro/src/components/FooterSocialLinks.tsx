@@ -1,4 +1,4 @@
-import { createSignal } from "solid-js";
+import { useState } from "react";
 
 interface SocialLink {
   id: number;
@@ -48,38 +48,39 @@ function redirectToExternalUrl(url: string) {
 }
 
 export default function FooterSocialLinks() {
-  const [hoverIndex, setHoverIndex] = createSignal(0);
+  const [hoverIndex, setHoverIndex] = useState(0);
 
   return (
     <>
-      <ul class="flex flex-row">
+      <ul className="flex flex-row">
         {socialLinks.map((socialLink) => (
           <li
-            class="h-8 w-8 p-1 ml-8"
+            className="h-8 w-8 p-1 ml-8"
             onMouseEnter={() => setHoverIndex(socialLink.id)}
             onMouseLeave={() => setHoverIndex(0)}
+            key={socialLink.id}
           >
-            {hoverIndex() === socialLink.id ?
+            {hoverIndex === socialLink.id ?
               <a
                 onClick={() => redirectToExternalUrl(socialLink.url)}
-                class="absolute h-8 w-8 p-1 rounded-full cursor-pointer"
+                className="absolute h-8 w-8 p-1 rounded-full cursor-pointer"
                 style={socialLink.bgColor}
               >
                 <img
                   src={socialLink.image}
                   alt={socialLink.alt}
-                  class="absolute h-6 w-6"
+                  className="absolute h-6 w-6"
                 />
               </a>
               :
               <a
                 onClick={() => redirectToExternalUrl(socialLink.url)}
-                class="absolute h-8 w-8 p-1 rounded-full cursor-pointer"
+                className="absolute h-8 w-8 p-1 rounded-full cursor-pointer"
               >
                 <img
                   src={socialLink.image}
                   alt={socialLink.alt}
-                  class="absolute h-6 w-6"
+                  className="absolute h-6 w-6"
                 />
               </a>
             }
