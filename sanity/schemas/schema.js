@@ -1,6 +1,7 @@
 import createSchema from 'part:@sanity/base/schema-creator'
 import schemaTypes from 'all:part:@sanity/base/schema-type'
 
+import about from './about'
 import body from './body'
 import case_study from './case_study'
 import client from './client'
@@ -18,6 +19,7 @@ import service from './service'
 export default createSchema({
   name: 'default',
   types: schemaTypes.concat([
+    about,
     body,
     case_study,
     client,

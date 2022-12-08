@@ -4,7 +4,7 @@ import SanityPortableText from './SanityPortableText.astro';
 
 const { featured, columns } = Astro.props;
 const data = await getCaseStudies(featured);
-console.log({ data });
+// console.log({ data });
 
 const colWidth = 'width: calc(' + 100 / columns + '% - 2rem)';
 ---

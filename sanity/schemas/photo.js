@@ -8,9 +8,6 @@ export default {
         type: 'string',
         title: 'Title',
         required: true,
-        options: {
-          maxLength: 256
-        }
       },
       {
         name: 'image',
@@ -51,4 +48,3 @@ export default {
       }
     ],
   }
-  

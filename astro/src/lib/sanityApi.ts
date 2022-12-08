@@ -182,3 +182,26 @@ export async function getClientsByLastId(lastId: string) {
   console.log({ data, lastId });
   return { data, lastId };
 }
+
+export interface About {
+  name: string;
+  slug: string;
+  image: {
+    url: string;
+  };
+}
+
+export async function getAbouts(): Promise<About[]> {
+  const query = `*[_type == "about"] | order(name) {
+    name,
+    "slug": slug.current,
+    "image": image-> {
+      "": image {
+        "url": asset->url
+      }
+    }
+  }`;
+
+  let data: About[] = await sanityClient.fetch(query);
+  return data;
+}

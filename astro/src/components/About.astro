@@ -1,0 +1,30 @@
+---
+import { getAbouts } from '@lib/sanityApi';
+
+const data = await getAbouts();
+console.log({ data });
+---
+
+<div class='flex flex-row w-full h-auto'>
+  {
+    data &&
+      data.map((about) => (
+        <div class='flex flex-col w-1/2 justify-center items-center'>
+          <a
+            href={`/about/${about.slug}`}
+            class='bg-white hover:bg-gray-200 hover:text-indigo-800 cursor-pointer transition duration-200 ease-in-out mr-3 ml-3'
+          >
+            <div class='flex w-full h-60'>
+              <img
+                src={about.image.url}
+                class='w-full h-full object-cover overflow-hidden'
+              />
+            </div>
+            <div class='flex max-w-full h-20 justify-center items-center text-2xl font-light'>
+              {about.name}
+            </div>
+          </a>
+        </div>
+      ))
+  }
+</div>

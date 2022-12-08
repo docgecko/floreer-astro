@@ -20,7 +20,6 @@ export default function Clients(
       setSelectedSlide(slideMin);
     }
   }
-  console.log({ selectedSlide })
 
   return (
     <>
@@ -129,6 +128,7 @@ export default function Clients(
           <a
             className={`flex font-light justify-center items-center text-xs ${selectedSlide === index ? "bg-indigo-800" : "bg-gray-300 hover:bg-gray-500"} rounded-full w-3 h-3 mx-2 cursor-pointer`}
             onClick={() => updateSelectedSlide(index)}
+            key={index}
           />
         ))}
       </div>

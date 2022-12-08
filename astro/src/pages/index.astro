@@ -7,29 +7,30 @@ import ScrollDownButton from '@components/ScrollDownButton';
 import Services from '@components/Services.astro';
 import CaseStudies from '@components/CaseStudies.astro';
 import Clients from '@components/Clients';
+import About from '@components/About.astro';
 
 const pageTitle = 'Home';
 const { hero, section } = await getPage(pageTitle);
-console.log({ hero, section });
+// console.log({ hero, section });
 
 const clients = await getClients();
-console.log({ clients });
+// console.log({ clients });
 
 const createGroupsOfSlides = async (clients: Client[]): Promise<Client[][]> => {
   let res: Client[][] = [];
-  console.log('clients: ', clients);
+  // console.log('clients: ', clients);
   for (let i = 0; i < clients.length; i += 8) {
     // console.log("clients.slice: ", clients.slice(i, i + 8));
     res.push(clients.slice(i, i + 8));
   }
-  console.log('all slides: ', res);
+  // console.log('all slides: ', res);
   return res;
 };
 
 const slides = await createGroupsOfSlides(clients);
 let slideMin: number = 0,
   slideMax: number = Math.ceil(clients.length / 8) - 1;
-console.log({ slideMin, slideMax, slides });
+// console.log({ slideMin, slideMax, slides });
 ---
 
 <Layout>
@@ -208,7 +209,7 @@ console.log({ slideMin, slideMax, slides });
         <SanityPortableText portableText={section[3].content.description} />
       </div>
       <div class='flex flex-col w-full h-auto pt-8'>
-        <!-- <app-about-all></app-about-all> -->
+        <About />
       </div>
     </article>
   </section>
