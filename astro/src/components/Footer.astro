@@ -1,7 +1,7 @@
 ---
 import FooterForm from './FooterForm';
 import FooterNav from './FooterNav.astro';
-import FooterSocialLinks from './FooterSocialLinks';
+import FooterSocialLinks from './FooterSocialLinks.astro';
 
 const currentYear: number = new Date().getFullYear();
 ---
@@ -27,7 +27,7 @@ const currentYear: number = new Date().getFullYear();
         />
       </div>
       <div class='flex w-1/2 justify-end'>
-        <FooterSocialLinks client:visible />
+        <FooterSocialLinks />
       </div>
     </div>
 

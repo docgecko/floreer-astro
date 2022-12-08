@@ -1,0 +1,59 @@
+---
+interface SocialLink {
+  id: number;
+  image: string;
+  alt: string;
+  url: string;
+  bgColor: string;
+}
+
+const socialLinks: SocialLink[] = [
+  {
+    id: 1,
+    image: '/images/linkedin_white.png',
+    alt: 'Linkedin logo',
+    url: 'https://www.linkedin.com/company/floreer',
+    bgColor: '#888888',
+  },
+  {
+    id: 2,
+    image: '/images/twitter_white.png',
+    alt: 'Twitter logo',
+    url: 'https://twitter.com/floreerconsult',
+    bgColor: 'twitter',
+  },
+  {
+    id: 3,
+    image: '/images/facebook_white.png',
+    alt: 'Facebook logo',
+    url: 'https://www.facebook.com/Floreer-172831206113622',
+    bgColor: 'facebook',
+  },
+  {
+    id: 4,
+    image: '/images/instagram_white.png',
+    alt: 'Instagram logo',
+    url: 'https://www.instagram.com/floreerconsulting/',
+    bgColor: 'instagram',
+  },
+];
+---
+
+<ul class='flex flex-row'>
+  {
+    socialLinks.map((socialLink) => (
+      <li class='h-8 w-8 p-1 ml-8'>
+        <a
+          href={socialLink.url}
+          class='absolute h-8 w-8 p-1 rounded-full cursor-pointer hover:bg-gray-500'
+        >
+          <img
+            src={socialLink.image}
+            alt={socialLink.alt}
+            class='absolute h-6 w-6'
+          />
+        </a>
+      </li>
+    ))
+  }
+</ul>
