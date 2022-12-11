@@ -10,15 +10,15 @@ function ScrollToSection(id: string) {
   }
 }
 
-export default function ScrollDownButton() {
+export default function ScrollDownButton({id}:{id: string}) {
   return (
     <div className='flex flex-col absolute w-1/2 h-screen z-30 text-center'>
-      {/* <span className='absolute left-full bottom-16 w-40 h-10 -ml-20 text-indigo-800'>
+      <span className='absolute left-full bottom-16 w-40 h-10 -ml-20 text-indigo-800'>
         scroll down
-      </span> */}
+      </span>
       <button
-        className='animate-bounce scroll absolute left-full bottom-8 w-11 h-11 bg-white rounded-full outline-none -ml-6'
-        onClick={() => ScrollToSection('section-services')}
+        className='scroll absolute left-full bottom-8 w-11 h-11 bg-white rounded-full outline-none -ml-6'
+        onClick={() => ScrollToSection(id)}
       >
         <svg
           xmlns='http://www.w3.org/2000/svg'

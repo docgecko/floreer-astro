@@ -6,7 +6,7 @@ const siteNavigation = [
   {
     order: 1,
     title: 'Work',
-    url: '/work',
+    url: '/work/case-studies',
   },
   {
     order: 2,
@@ -16,12 +16,12 @@ const siteNavigation = [
   {
     order: 3,
     title: 'About',
-    url: '/about',
+    url: '/about/floreer',
   },
   {
     order: 4,
     title: 'Connect',
-    url: '/connect',
+    url: '/connect/contact-us',
   },
 ];
 ---
@@ -29,7 +29,7 @@ const siteNavigation = [
 <nav
   class='relative h-24 flex justify-between items-center pl-9 pr-6 bg-transparent text-md font-medium z-30'
 >
-  <a href='' class='p-3 bg-white rounded-full'>
+  <a href='/' class='p-3 bg-white rounded-full'>
     <img
       src='/images/floreer_icon.png'
       alt='Welcome to Floreer'
@@ -53,8 +53,8 @@ const siteNavigation = [
       ))
     }
     <!-- Search Button -->
-    <SearchButton client:visible />
+    <SearchButton client:only='react' />
     <!-- SideNav Menu Button -->
-    <SideNavButton client:visible />
+    <SideNavButton client:only='react' />
   </ul>
 </nav>

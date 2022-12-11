@@ -13,28 +13,28 @@ const socialLinks: SocialLink[] = [
     image: '/images/linkedin_white.png',
     alt: 'Linkedin logo',
     url: 'https://www.linkedin.com/company/floreer',
-    bgColor: '#888888',
+    bgColor: 'bg-linkedin',
   },
   {
     id: 2,
     image: '/images/twitter_white.png',
     alt: 'Twitter logo',
     url: 'https://twitter.com/floreerconsult',
-    bgColor: 'twitter',
+    bgColor: 'bg-twitter',
   },
   {
     id: 3,
     image: '/images/facebook_white.png',
     alt: 'Facebook logo',
     url: 'https://www.facebook.com/Floreer-172831206113622',
-    bgColor: 'facebook',
+    bgColor: 'bg-facebook',
   },
   {
     id: 4,
     image: '/images/instagram_white.png',
     alt: 'Instagram logo',
     url: 'https://www.instagram.com/floreerconsulting/',
-    bgColor: 'instagram',
+    bgColor: 'bg-instagram',
   },
 ];
 ---
@@ -45,7 +45,7 @@ const socialLinks: SocialLink[] = [
       <li class='h-8 w-8 p-1 ml-8'>
         <a
           href={socialLink.url}
-          class='absolute h-8 w-8 p-1 rounded-full cursor-pointer hover:bg-gray-500'
+          class={`absolute h-8 w-8 p-1 rounded-full cursor-pointer hover:${socialLink.bgColor}`}
         >
           <img
             src={socialLink.image}
